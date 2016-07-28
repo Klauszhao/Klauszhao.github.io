@@ -4,14 +4,28 @@
   <url>
     <loc>http://yoursite.com/2016/07/26/first/</loc>
     
-    <lastmod>2016-07-26T06:25:39.548Z</lastmod>
+    <lastmod>2016-07-28T14:28:11.827Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2016/07/24/hello-world/</loc>
     
-    <lastmod>2016-07-24T08:23:44.099Z</lastmod>
+    <lastmod>2016-07-27T01:42:27.300Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2016-07-26T08:09:33.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2016-07-26T07:44:58.475Z</lastmod>
     
   </url>
   

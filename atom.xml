@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-26T06:25:39.548Z</updated>
+  <updated>2016-07-28T14:28:11.827Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,18 +16,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>first   //在此处添加你的标题。</title>
+    <title>利用Hexo搭建github个人博客</title>
     <link href="http://yoursite.com/2016/07/26/first/"/>
     <id>http://yoursite.com/2016/07/26/first/</id>
-    <published>2016-07-26T06:22:35.636Z</published>
-    <updated>2016-07-26T06:25:39.548Z</updated>
+    <published>2016-07-26T12:23:29.000Z</published>
+    <updated>2016-07-28T14:28:11.827Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>一直想搞个人博客，一直也没时间，等到了暑假，老师的新项目还没有开启就想起来搭建个人博客，中间碰到了挺多问题，这里也会跟大家讲一下，希望大家迅速的搭建个人博客，同时感谢帮助我的大神，他们的博客地址我会在底部给出链接，大家也可以去浏览、参考，现在开启我的搭建之旅。<br>   首先给出Github网址：<a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a></p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
+<li>注册github账号以及github本地电脑安装客户端<br> 当然你也要回一些github的基本操作，否则后面的代码也是看不懂。<br> 附上一个学习github的地址： <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">github</a><br> 网址上有非常详细的讲解，希望对大家有帮助，建议大家安装完检查下安装是否成功。</li>
+<li>安装Node.js<br> 给出官网地址  <a href="https://nodejs.org/en/download/" target="_blank" rel="external">Node</a><br> 具体安装步骤，百度就可以，建议大家安装完检查下安装是否成功。</li>
+<li>Hexo<br>介绍我就不说了，给出官网地址 <a href="https://hexo.io/" target="_blank" rel="external">HEXO</a>，大家要注意，这个网站的右上角是可以选择语言的，方便大家浏览官网，谅解相关的基础知识。<h2 id="HEXO安装"><a href="#HEXO安装" class="headerlink" title="HEXO安装"></a>HEXO安装</h2></li>
+</ul>
+<p>1 .   首先点击git shell来启动或者使用cmd命令输入一下命令（两种方式都行）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g  --这也是官方的安装命令，可参考官网  </div><div class="line">npm install hexo --save</div></pre></td></tr></table></figure></p>
+<p>2 .   Hexo初始化配置<br>上面一步安装成功后，开始创建hexo文件夹： 自己随意在 D盘、F 盘选择一个英文路径的文件夹，我们假设是F:Hexo/，首先  cd 到文件夹Hexo中,使用以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init --初始化这个文件夹 </div><div class="line">npm install --安装配置信息</div></pre></td></tr></table></figure></p>
+<p>安装 Hexo 完成后，Hexo 将会在指定文件夹中新建所需要的文件。Hexo文件夹下的目录如下：<br>        <img src="http://ob10rhuer.bkt.clouddn.com/Image.png" alt="Hexo文件内容"></p>
+<p>3 .  安装相关的Hexo插件<br> 这些插件其实也可以当你要用的时候再来安装，不过为了不出错误，我们还是提前安装吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">npm install hexo-generator-index --save                                                                        </div><div class="line">npm install hexo-generator-archive --save                                                                         </div><div class="line">npm install hexo-generator-category --save                                                                     </div><div class="line">npm install hexo-generator-tag --save                                                             </div><div class="line">npm install hexo-server --save </div><div class="line">npm install hexo-deployer-git --save</div><div class="line">npm install hexo-deployer-heroku --save </div><div class="line">npm install hexo-deployer-rsync --save </div><div class="line">npm install hexo-deployer-openshift --save </div><div class="line">npm install hexo-renderer-marked@0.2 --save </div><div class="line">npm install hexo-renderer-stylus@0.2 --save </div><div class="line">npm install hexo-generator-feed@1 --save </div><div class="line">npm install hexo-generator-sitemap@1 --save</div></pre></td></tr></table></figure></p>
+<p>4 .  查看本地Hexo服务效果<br> 以上插件安装成功后，我们来测试本地的服务，看本地环境是否搭建成功。执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g  --有的博客上是用 hexo generate，其实这两条命令是等价的，不影响</div><div class="line">hexo s  --有的博客是利用 hexo server，这两条命令是等价的</div></pre></td></tr></table></figure></p>
+<p>接下来登录到我们的<a href="http://localhost:4000" target="_blank" rel="external">本地测试 </a>，就可以看到如下界面：<br><img src="http://ob10rhuer.bkt.clouddn.com/1.png" alt="hexo测试主页"><br>如果长时间没有出现，首先你就要去查看你的4000端口号是不是被占用了，最可能的结果<br>就是安装了福昕阅读器，因为这个软件会占用你的4000端口，导致hexo server命令行显示服务器启动成功但实际上无法正常访问，这个时候你就要更改下端口号，<br>利用命令：hexo s -p 4001 ,来启动localhost:4001，你就可以发现问题解决了，即可看到本地的效果如下：<br>（注意看图中的端口号）<br>      <img src="http://ob10rhuer.bkt.clouddn.com/1.png" alt="hexo测试主页"></p>
+<h2 id="Github-Pages设置以及将博客部署到Github-Pages"><a href="#Github-Pages设置以及将博客部署到Github-Pages" class="headerlink" title="Github Pages设置以及将博客部署到Github Pages"></a>Github Pages设置以及将博客部署到Github Pages</h2><p>以上的操作只能让我们在本地看到我们的博客，现在我们要来设置Github Pages，让别人通过地址<br>联网来查看博客。</p>
+<p>1 . 注册Github后新建一个Github项目，点击 New repository，如图来设置：<br>            <img src="http://ob10rhuer.bkt.clouddn.com/2.png" alt="hexo测试主页"></p>
+<p>注意：这里添写的项目名称一定要记得必须是严格按照一下格式来的：<br>                     (你的github用户名).github.io<br>            这样名字就只有二级，否则会很长。<br>2 . 创建Github Pages<br>点击刚刚创建的(你的github用户名).github.io里面去，在右侧我可以看到一个Setting,<br>             <img src="http://ob10rhuer.bkt.clouddn.com/3.png" alt="hexo测试主页"><br>然后在跳转的页面上找到 Github Pages，然后点击”Launch automatic page generator”，如图：<br>             <img src="http://ob10rhuer.bkt.clouddn.com/4.png" alt="hexo测试主页"><br>3 . 配置SSH秘钥<br>这个方面教程因为我个人的github安装路径问题，所以这里不介绍，网上有很多教程，大家配置秘钥的时候一定要找到自己github安装的路径最后一定要验证下自己是否设置成功。<br>将本地的Hexo文件更新到github库中<br>这里要讲下Hexo文件可以不再github目录下，这个没有必要要求。<br>(1)、点击刚才的创建好的Github Pages，找到”Clone or download”，选择”Clone with HTTPS”下的 URL，如图：<br>                    <img src="http://ob10rhuer.bkt.clouddn.com/5.png" alt="hexo测试主页"><br>(2)、打开你在电脑上创建的Hexo文件夹，用记事本或者 sublime txt打开_config.yml文件<br>                    <img src="http://ob10rhuer.bkt.clouddn.com/6.png" alt="hexo测试主页"></p>
+<p>(3)、在配置文件下做如下修改，保存<br>       <img src="http://ob10rhuer.bkt.clouddn.com/7.png" alt="hexo测试主页"></p>
+<p>(4)、在Hexo文件夹下执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean                               </div><div class="line">hexo  generator                                 </div><div class="line">hexo  d</div></pre></td></tr></table></figure>
+<p>执行完，有的会让你输入github的账号和密码，我在执行操作的时候没有要求输入账号和密码，就等了一会，执行完毕，这个时候访问之前创建的：(你的github用户名).github.io就可以访问了。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p> 感谢几位大神的博客指导，我在他们的肩膀上成功了搭建了自己的博客，当然也出现了一些问题，<br>这些问题希望对其他人有帮助。<br>网址一：<a href="http://my.oschina.net/ryaneLee/blog/638440?p=2&amp;temp=1469515340240#blog-comments-list" target="_blank" rel="external">大神博客地址</a><br>网址二：<a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="external">大神博客地址</a></p>
+<p>到目前为止只是搭建了这么一个博客，还有很多要学习的，建议大家去官网了解下hexo，这对你后续的给博客添加一些功能有帮助。</p>
+]]></content>
     
     <summary type="html">
     
+      &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;p&gt;一直想搞个人博客，一直也没时间，等到了暑假，老师的新项目还没有开启就想起来搭建个人博客，中间碰到了挺多问题，这里也会跟大家讲一下，希望大家迅
+    
     </summary>
     
-      <category term="Other   //在此处输入这篇文章的分类。" scheme="http://yoursite.com/categories/Other-%E5%9C%A8%E6%AD%A4%E5%A4%84%E8%BE%93%E5%85%A5%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E7%9A%84%E5%88%86%E7%B1%BB%E3%80%82/"/>
+      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
     
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+      <category term="github" scheme="http://yoursite.com/tags/github/"/>
     
   </entry>
   
@@ -36,7 +65,7 @@
     <link href="http://yoursite.com/2016/07/24/hello-world/"/>
     <id>http://yoursite.com/2016/07/24/hello-world/</id>
     <published>2016-07-24T08:23:44.099Z</published>
-    <updated>2016-07-24T08:23:44.099Z</updated>
+    <updated>2016-07-27T01:42:27.300Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -55,6 +84,12 @@
     
     </summary>
     
+      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
+    
+    
+      <category term="spark" scheme="http://yoursite.com/tags/spark/"/>
+    
+      <category term="sparkSQL" scheme="http://yoursite.com/tags/sparkSQL/"/>
     
   </entry>
   
