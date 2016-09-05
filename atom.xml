@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-28T14:28:11.827Z</updated>
+  <updated>2016-09-05T13:18:51.759Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SlorCloud关于二次分片的研究以及增加shard和服务器实现动态扩容</title>
+    <link href="http://yoursite.com/2016/09/05/SolrCloud_Splitshard/"/>
+    <id>http://yoursite.com/2016/09/05/SolrCloud_Splitshard/</id>
+    <published>2016-09-05T13:44:34.312Z</published>
+    <updated>2016-09-05T13:18:51.759Z</updated>
+    
+    <content type="html"><![CDATA[<p>大家好，这几天一直在学习solr，目前也已经搭建好了solrcloud，但是学长又逼着<br>我开始研究solr的相关问题，就比如说今天我们要面临的一个问题。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>学习solr的知道搭建集群的时候要指定shard的数目，这就会造成一个问题：我们怎<br>么清楚几个shard数目是合理的，或者说是满足我们的需求的。即使现在满足了需<br>求，但是将来需求还会变，真是蛋疼所以我们要想出一个策略来实现动态添加shard<br>，但是还有一个问题：索引文件会随着数据量的提升越来越大，以前的集群环境已经<br>容纳不了那么多的索引文件，如何实现动态添加新服务器到solr集群中，而不用重新启<br>动整个集群环境？所以今天实质要研究两个问题。</p>
+<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>实验环境：solr4.4 + jetty + zookeeper(外搭) + ubantu 系统</p>
+<p>我们知道solr中有分裂功能，就是将一个shard分裂成两个shard，并且把该shard的<br>哈希值范围分成两个，这只针对路由方式是Composite的集群环境，因为只有Composite<br>路由方式才可以将哈希范围分成两份，这样solr主节点才可以将通过自己的负载均衡<br>将文档平均的分配到集群的各个节点上。但是其实你利用了分裂把一个哈希范围分成<br>了两个，其实这个时候就已经负载不均衡了，因为你的哈希范围比其他的shard的少一<br>半，好的接下里我们来实现分裂功能。</p>
+<h3 id="步骤一：搭建集群环境"><a href="#步骤一：搭建集群环境" class="headerlink" title="步骤一：搭建集群环境"></a>步骤一：搭建集群环境</h3><p>首先我搭的集群是三个shard，除了shard1是有两个备份的，其他的两个shard是一个<br>备份，总共涉及到四台机器的solr服务，本来是有截图的，但是做完了实验又不爱重新<br>去搭建环境，毕竟很费时，所以这里跟大家交代一下就OK了。</p>
+<h3 id="步骤二：开始分裂"><a href="#步骤二：开始分裂" class="headerlink" title="步骤二：开始分裂"></a>步骤二：开始分裂</h3><p>利用命令——–curl -i -v “<a href="http://xxx.xxx.xxx.190:8983/solr/admin/collections?action=" target="_blank" rel="external">http://xxx.xxx.xxx.190:8983/solr/admin/collections?action=</a><br>                           SPLITSHARD&amp;collection=skycent&amp;shard=shard1”<br>curl 是一个Linux工具，这条命令直接可以在Linux终端上使用，当然前提是安装了<br>此工具。<br>collection：是你的集合名称，我的是skycent。<br>shard：这个可以改成自己想分裂的shard，我这里是shard1。<br>可能会在执行后输出的字符中有出错的提示，但是可忽略不计，我们刷新solr<br>页面，看是否出现了新的两个shard，并且名称是：shard1_1和shard1_0。这表明<br>是从shard1分裂的两个新节点，然后记得把shard1节点的主节点和备份节点的skycent<br>都unload掉，这个unload操作可以在界面上的Core Admin上手动执行，也可以通过http<br>来实现，自己解决搞定，搞定后应该会出现如下的图片：<br> <img src="http://ob10rhuer.bkt.clouddn.com/image/Bolg/SolrCloud_forshardspiltsolr2.png" alt="分裂后的集群Group"></p>
+<p>如果没有unload掉，可能会出现这种情况：当你新增加节点的时候可能会出现又多了<br>shard节点。如果看zookeeper集群信息/clusterstate.json，会发现新增加的shard没有哈希<br>范围，也就是说分配文档给节点的时候不会分配给这个节点，也就是说这个shard没有用。</p>
+<h3 id="步骤三：扩容新的服务器"><a href="#步骤三：扩容新的服务器" class="headerlink" title="步骤三：扩容新的服务器"></a>步骤三：扩容新的服务器</h3><p>我们本来的shard是3个，服务器是4个，分裂一个shard1后我们的shard是4个，也就是说这个<br>时候可以一台机器一个shard，但是我们经过步骤二之后发现，分裂的两个shard1-x都是在一个<br>机器上，也就是说一个机器有两个shard，我们观察步骤二之后的集群状态可以知道，这个时候<br>有一个新机器192：8984是备份节点，所以我们可以通过kill 190:8983这个solr服务，这样备份节<br>点就会成为主节点，也就是192:8984会成为主节点，这个时候四个主节点就是：<br>  shard2：189:8983<br>  shard3：191:8983<br>  shard1_1：190:8984<br>  shard1_0：192:8984<br>  <img src="http://ob10rhuer.bkt.clouddn.com/image/Bolg/SolrCloud_forshardspiltsolr3.png" alt="solr集群Group"><br>  这样就相当于动态的添加了新的服务器到solr集群上去了，并且一个shard有一个服务器，再继<br>  续将刚刚kill掉的190:8983  solr服务开启，这样就作为了备份节点，并测试去添加一个新的solr<br>  服务到集群环境中，观察发现添加的189:8984  solr 服务作为了备份节点，而没有去成为shard<br>  节点，说明集群没有问题，搭建后的shard数目保持在4个，没有被分裂影响到数目。<br><img src="http://ob10rhuer.bkt.clouddn.com/image/Bolg/SolrCloud_forshardspiltsolr4.png" alt="solr集群Group"></p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>其实花的时间挺多的，因为网上这方面的资料很少，很多都要自己去弄，一个一个去测试，还有，<br>如果你一个步骤错了就要启动zookeeper，并且清空掉zookeeper中的solr集群内容，这个操作可以<br>用zk客户端的删除操作来执行，很浪费时间，所以写一个笔记在这，让更多人可以一起研究，如果<br>大家有问题可以在下方评论，我看到后会去解答，很多事情迈出第一步就好了，希望大家学习快乐。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;大家好，这几天一直在学习solr，目前也已经搭建好了solrcloud，但是学长又逼着&lt;br&gt;我开始研究solr的相关问题，就比如说今天我们要面临的一个问题。&lt;/p&gt;
+&lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+      <category term="SolrCloud" scheme="http://yoursite.com/categories/SolrCloud/"/>
+    
+    
+      <category term="SolrCloud" scheme="http://yoursite.com/tags/SolrCloud/"/>
+    
+      <category term="SPLITSHARD" scheme="http://yoursite.com/tags/SPLITSHARD/"/>
+    
+      <category term="二次分片" scheme="http://yoursite.com/tags/%E4%BA%8C%E6%AC%A1%E5%88%86%E7%89%87/"/>
+    
+      <category term="扩容" scheme="http://yoursite.com/tags/%E6%89%A9%E5%AE%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>利用Hexo搭建github个人博客</title>
