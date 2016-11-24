@@ -3,21 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Mr.荷马</title>
+  <title>SlorCloud关于关于ClusterState says we are the leader 问题 | Mr.荷马</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+  <meta name="description" content="这几天检查solrCloud集群发现有些集群有问题，索引没有在建，我的集群有些core中leader选举错了，主要集中问题描述的的三个问题上。
+问题描述集群环境介绍：4个core，每个core4个shard，每个shard有三个节点，其中一个是leader，两外两个是备份节点。
+1、org.apache.solr.common.SolrException: ClusterState says we">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/07/24/hello-world/index.html">
+<meta property="og:title" content="SlorCloud关于关于ClusterState says we are the leader 问题">
+<meta property="og:url" content="http://yoursite.com/2016/11/24/SolrCloud_Leader选举问题/index.html">
 <meta property="og:site_name" content="Mr.荷马">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-07-27T01:42:27.300Z">
+<meta property="og:description" content="这几天检查solrCloud集群发现有些集群有问题，索引没有在建，我的集群有些core中leader选举错了，主要集中问题描述的的三个问题上。
+问题描述集群环境介绍：4个core，每个core4个shard，每个shard有三个节点，其中一个是leader，两外两个是备份节点。
+1、org.apache.solr.common.SolrException: ClusterState says we">
+<meta property="og:image" content="http://ob10rhuer.bkt.clouddn.com/clusterstate_json.png">
+<meta property="og:updated_time" content="2016-11-24T13:29:19.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="SlorCloud关于关于ClusterState says we are the leader 问题">
+<meta name="twitter:description" content="这几天检查solrCloud集群发现有些集群有问题，索引没有在建，我的集群有些core中leader选举错了，主要集中问题描述的的三个问题上。
+问题描述集群环境介绍：4个core，每个core4个shard，每个shard有三个节点，其中一个是leader，两外两个是备份节点。
+1、org.apache.solr.common.SolrException: ClusterState says we">
+<meta name="twitter:image" content="http://ob10rhuer.bkt.clouddn.com/clusterstate_json.png">
   
     <link rel="alternative" href="/atom.xml" title="Mr.荷马" type="application/atom+xml">
   
@@ -250,11 +255,11 @@ Quick">
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-SolrCloud_Leader选举问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/24/hello-world/" class="article-date">
-      <time datetime="2016-07-24T08:23:44.099Z" itemprop="datePublished">2016-07-24</time>
+      <a href="/2016/11/24/SolrCloud_Leader选举问题/" class="article-date">
+      <time datetime="2016-11-24T11:50:07.322Z" itemprop="datePublished">2016-11-24</time>
 </a>
     </div>
   
@@ -267,7 +272,7 @@ Quick">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      SlorCloud关于关于ClusterState says we are the leader 问题
     </h1>
   
 
@@ -276,13 +281,13 @@ Quick">
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+    <a class="article-category-link" href="/categories/SolrCloud/">SolrCloud</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sparkSQL/">sparkSQL</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SolrCloud/">SolrCloud</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leader/">leader</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -292,15 +297,87 @@ Quick">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>这几天检查solrCloud集群发现有些集群有问题，索引没有在建，我的集群有些core中leader选举错了，主要集中问题描述的的三个问题上。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>集群环境介绍：<br>4个core，每个core4个shard，每个shard有三个节点，其中一个是leader，两外两个是备份节点。</p>
+<pre><code>1、org.apache.solr.common.SolrException: ClusterState says we are the leader (http://59.77.244.196:8983/solr/weibo),​ but locally we  don&apos;t think so. Request came from http://59.77.244.192:8985/solr/weibo/
+2、Error registering SolrCore:org.apache.solr.common.SolrException: Error getting leader from zk for shard shard1
+3、There was a problem finding the leader in zk:org.apache.solr.common.SolrException: Could not get leader props
+</code></pre><p>这个问题很棘手啊，我开始根据关键词去百度谷歌找些资料来查看什么原因，不过答案还是太杂了，不太懂，后来在一个讨论群里群主告诉我要修改集群的配置文件，我就尝试一下，后来发现两个办法可以解决，于是做个笔记，下次碰到了也好解决。</p>
+<h2 id="问题解决（一）"><a href="#问题解决（一）" class="headerlink" title="问题解决（一）"></a>问题解决（一）</h2><p>环境：solr4.4 + jetty + zookeeper(外搭) + ubantu 系统</p>
+<p>简单粗暴的做法就是重启所有zookeeper服务和solr服务，但是我有3个zookeeper服务，12个solr节点，全部重启真是太蛋疼了，建议还是用第二种办法，不过第二种办法要求你最好是懂一些zookeeper编程的操作，否则也是很蛋疼，我会贴出代码，不过一些jar包就靠你们摸索了。</p>
+<h2 id="问题解决（二）"><a href="#问题解决（二）" class="headerlink" title="问题解决（二）"></a>问题解决（二）</h2><p>环境：solr4.4 + jetty + zookeeper(外搭) + ubantu 系统</p>
+<h3 id="步骤一：拷贝自己solr集群中的clusterstate-json文件内容"><a href="#步骤一：拷贝自己solr集群中的clusterstate-json文件内容" class="headerlink" title="步骤一：拷贝自己solr集群中的clusterstate.json文件内容"></a>步骤一：拷贝自己solr集群中的clusterstate.json文件内容</h3><p>你可以通过zookeeper的zkCli.sh来得到，需要你懂一些相关命令，或者你直接在如图下的路径就可以找到该文件，还可以在界面看到配置信息，将配置信息拷贝出来放进本机的一个文件中。<br> <img src="http://ob10rhuer.bkt.clouddn.com/clusterstate_json.png" alt="集群配置信息"></p>
+<h3 id="步骤二：修改配置信息"><a href="#步骤二：修改配置信息" class="headerlink" title="步骤二：修改配置信息"></a>步骤二：修改配置信息</h3><p>这里修改配置信息是因为leader的节点弄错了，所以要修改步骤一得到的clusterstate.json信息，接下来我会贴出部分信息给大家看：<br>假设core1是正常没有出现leader选举出错的core信息，core2是有问题的。</p>
+<pre><code>core1中的配置信息：
+&quot;shard1&quot;:{
+    &quot;range&quot;:&quot;80000000-bfffffff&quot;,
+    &quot;state&quot;:&quot;active&quot;,
+    &quot;replicas&quot;:{
+      &quot;core_node1&quot;:{
+        &quot;state&quot;:&quot;active&quot;,
+        &quot;core&quot;:&quot;forum&quot;,
+        &quot;node_name&quot;:&quot;59.77.244.196:8983_solr&quot;,
+        &quot;base_url&quot;:&quot;http://59.77.244.196:8983/solr&quot;},
+      &quot;core_node5&quot;:{
+        &quot;state&quot;:&quot;active&quot;,
+        &quot;core&quot;:&quot;forum&quot;,
+        &quot;node_name&quot;:&quot;59.77.244.196:8984_solr&quot;,
+        &quot;base_url&quot;:&quot;http://59.77.244.196:8984/solr&quot;,
+        &quot;leader&quot;:&quot;true&quot;},      #------------------------------注意看这里-----------------#
+      &quot;core_node9&quot;:{
+        &quot;state&quot;:&quot;active&quot;,
+        &quot;core&quot;:&quot;forum&quot;,
+        &quot;node_name&quot;:&quot;59.77.244.199:8984_solr&quot;,
+        &quot;base_url&quot;:&quot;http://59.77.244.199:8984/solr&quot;}}},
+        信息中我们看到  shard1的leader节点是59.77.244.196:8984，因为他有一个字段是  &quot;leader&quot;:&quot;true&quot;。
+
+        core2中的配置信息：
+        &quot;shard1&quot;:{
+    &quot;range&quot;:&quot;80000000-bfffffff&quot;,
+    &quot;state&quot;:&quot;active&quot;,
+    &quot;replicas&quot;:{
+      &quot;core_node1&quot;:{
+        &quot;state&quot;:&quot;active&quot;,
+        &quot;core&quot;:&quot;forum&quot;,
+        &quot;node_name&quot;:&quot;59.77.244.196:8983_solr&quot;,
+        &quot;base_url&quot;:&quot;http://59.77.244.196:8983/solr&quot;,
+        &quot;leader&quot;:&quot;true&quot;},     #------------------------------注意看这里-----------------#
+      &quot;core_node5&quot;:{
+        &quot;state&quot;:&quot;active&quot;,
+        &quot;core&quot;:&quot;forum&quot;,
+        &quot;node_name&quot;:&quot;59.77.244.196:8984_solr&quot;,
+        &quot;base_url&quot;:&quot;http://59.77.244.196:8984/solr&quot;},
+      &quot;core_node9&quot;:{
+        &quot;state&quot;:&quot;active&quot;,
+        &quot;core&quot;:&quot;forum&quot;,
+        &quot;node_name&quot;:&quot;59.77.244.199:8984_solr&quot;,
+        &quot;base_url&quot;:&quot;http://59.77.244.199:8984/solr&quot;}}},
+        core2信息中leader是59.77.244.196:8983，所以要修改成core1中信息，把字段修改到59.77.244.196:8984中。
+
+ 假设你已经修改好了，已经把错误的信息修改过来了，那么接下来你应该是把配置信息上传到zookeeper集群中，代码如下：
+
+    private static final int TIMEOUT = 3000;
+    static final String urlport = &quot;59.77.244.199:2181&quot;;
+    public static void main(String[] args) throws KeeperException, InterruptedException{
+    ZooKeeper zkp;
+    try {
+        zkp = new ZooKeeper(urlport, TIMEOUT, null);
+        Stat stat = zkp.exists(&quot;/clusterstate.json&quot;,true);
+        zkp.setData(&quot;/clusterstate.json&quot;,readfile(&quot;D:\\ceshi\\clusterstate.json&quot;).getBytes(),-1);
+        byte[] bytes=zkp.getData(&quot;/clusterstate.json&quot;,null,stat);
+        System.out.println(&quot;得到的节点信息：&quot;+new String(bytes));
+    } catch (IOException e) {
+        System.out.println( &quot;连接创建失败，发生 IOException&quot; );   
+        e.printStackTrace();            
+    }
+}
+readfile(&quot;D:\\ceshi\\clusterstate.json&quot;) 就是读取本地的一个文件内容，这个不难，自己写一个函数就行
+当然各位根据自己的集群环境作进一步的修改。
+
+经过上述两步，你的集群leader节点已经转移到你修改的ip:端口上去了，过几秒钟，你会看到solrcloud集群界面。
+
+这个时候你出问题的shard上的其他两个节点可能还是有问题的，节点状态是：Down，当然没有问题最好，如果有问题，你这个时候去Linux服务器里kill掉这两个节点服务，然后重启这两个服务，过几秒种，节点状态就是：Active，这样你就可以开始建索引。
+</code></pre><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>solr服务总是会出现各种各样的问题，后来我想了一下，可能是服务器资源被占用了，然后solr服务被挤掉了，一直没有连接上去，导致solr集群选举机制的通讯出现了延迟，结果就是不知道谁是leader，哎，java一个程序启动就要吃掉2、3G的内存，真是蛋疼，没办法，服务器不够，一个服务器上最好不要有太多的程序在跑，不然那你会发现各种各样的问题的。 </p>
 
       
     </div>
@@ -309,13 +386,13 @@ Quick">
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/07/24/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2016/11/24/SolrCloud_Leader选举问题/">SlorCloud关于关于ClusterState says we are the leader 问题</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 荷马先生 的个人博客">荷马先生</a></p>
-        <p><span>发布时间:</span>2016年07月24日 - 16时23分</p>
-        <p><span>最后更新:</span>2016年07月27日 - 09时42分</p>
+        <p><span>发布时间:</span>2016年11月24日 - 19时50分</p>
+        <p><span>最后更新:</span>2016年11月24日 - 21时29分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/07/24/hello-world/" title="Hello World">http://yoursite.com/2016/07/24/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/07/24/hello-world/　　作者: 荷马先生" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/11/24/SolrCloud_Leader选举问题/" title="SlorCloud关于关于ClusterState says we are the leader 问题">http://yoursite.com/2016/11/24/SolrCloud_Leader选举问题/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/11/24/SolrCloud_Leader选举问题/　　作者: 荷马先生" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -328,15 +405,11 @@ Quick">
 
 <nav id="article-nav">
   
-    <a href="/2016/07/26/first/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          利用Hexo搭建github个人博客
-        
-      </div>
-    </a>
   
+    <a href="/2016/09/05/SolrCloud_Splitshard/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SlorCloud关于二次分片的研究以及增加shard和服务器实现动态扩容</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -345,7 +418,7 @@ Quick">
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题解决（一）"><span class="toc-number">2.</span> <span class="toc-text">问题解决（一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题解决（二）"><span class="toc-number">3.</span> <span class="toc-text">问题解决（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤一：拷贝自己solr集群中的clusterstate-json文件内容"><span class="toc-number">3.1.</span> <span class="toc-text">步骤一：拷贝自己solr集群中的clusterstate.json文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤二：修改配置信息"><span class="toc-number">3.2.</span> <span class="toc-text">步骤二：修改配置信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束语"><span class="toc-number">4.</span> <span class="toc-text">结束语</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -375,7 +448,7 @@ Quick">
 
       <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题解决（一）"><span class="toc-number">2.</span> <span class="toc-text">问题解决（一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题解决（二）"><span class="toc-number">3.</span> <span class="toc-text">问题解决（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤一：拷贝自己solr集群中的clusterstate-json文件内容"><span class="toc-number">3.1.</span> <span class="toc-text">步骤一：拷贝自己solr集群中的clusterstate.json文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤二：修改配置信息"><span class="toc-number">3.2.</span> <span class="toc-text">步骤二：修改配置信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束语"><span class="toc-number">4.</span> <span class="toc-text">结束语</span></a></li></ol>
   </div>
 
 
@@ -397,7 +470,7 @@ Quick">
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/07/24/hello-world/" data-title="Hello World" data-url="http://yoursite.com/2016/07/24/hello-world/"></div>
+    <div class="ds-thread" data-thread-key="2016/11/24/SolrCloud_Leader选举问题/" data-title="SlorCloud关于关于ClusterState says we are the leader 问题" data-url="http://yoursite.com/2016/11/24/SolrCloud_Leader选举问题/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -420,13 +493,13 @@ Quick">
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/07/26/first/" title="上一篇: 利用Hexo搭建github个人博客">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2016/09/05/SolrCloud_Splitshard/" title="下一篇: SlorCloud关于二次分片的研究以及增加shard和服务器实现动态扩容">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/24/SolrCloud_Leader选举问题/">SlorCloud关于关于ClusterState says we are the leader 问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/SolrCloud_Splitshard/">SlorCloud关于二次分片的研究以及增加shard和服务器实现动态扩容</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/26/first/">利用Hexo搭建github个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/24/hello-world/">Hello World</a></li></ul>
